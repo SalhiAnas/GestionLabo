@@ -22,7 +22,7 @@ public class Laboratoire {
     private List<Membre>  membres;
 
     @OneToOne ( mappedBy = "laboratoire")
-    private Repsonsable repsonsable;
+    private Responsable repsonsable;
 
 
 

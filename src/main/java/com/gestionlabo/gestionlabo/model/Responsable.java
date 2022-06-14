@@ -11,7 +11,8 @@ import javax.persistence.OneToOne;
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 @DiscriminatorValue("R")
-public class Repsonsable extends User{
+public class Responsable extends User{
+    private String grade;
     @OneToOne
     private Laboratoire laboratoire;
 

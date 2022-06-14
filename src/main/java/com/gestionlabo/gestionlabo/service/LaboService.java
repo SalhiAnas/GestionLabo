@@ -1,9 +1,12 @@
 package com.gestionlabo.gestionlabo.service;
 
-import com.gestionlabo.gestionlabo.model.Admin;
 import com.gestionlabo.gestionlabo.model.Laboratoire;
-import com.gestionlabo.gestionlabo.repositories.AdminRepository;
+import com.gestionlabo.gestionlabo.model.Membre;
+import com.gestionlabo.gestionlabo.model.Responsable;
 import com.gestionlabo.gestionlabo.repositories.LaboRepository;
+import com.gestionlabo.gestionlabo.repositories.MembreRepository;
+import com.gestionlabo.gestionlabo.repositories.ResponsableRepository;
+import com.gestionlabo.gestionlabo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,58 +19,72 @@ public class LaboService {
     LaboRepository laboRepository;
 
     @Autowired
-    AdminRepository adminRepository;
+    ResponsableRepository respoRepository;
 
-    public Admin checkPrivilege(long idUser)
+    @Autowired
+    MembreRepository membreRepository;
+
+
+
+
+    public List<Laboratoire> getAllLabo()
     {
-        System.out.println(idUser);
-        return adminRepository.findById(idUser).orElse(null);
-
-    }
-
-
-    public List<Laboratoire> getAllLabo(long idUser)
-    {
-        Admin admin=checkPrivilege(idUser);
-        System.out.println(admin);
-        if(admin == null)
-            throw new RuntimeException("vous n'etes pas autorisé de realiser cette action.");
         return laboRepository.findAll();
     }
 
-    public Laboratoire saveLabo(Laboratoire laboratoire,long idUser) throws RuntimeException
+    public Laboratoire saveLabo(Laboratoire laboratoire)
     {
-        Admin admin=checkPrivilege(idUser);
-        if(admin == null)
-            throw new RuntimeException("vous n'etes pas autorisé de realiser cette action.");
+
         return  laboRepository.save(laboratoire);
     }
 
-    public Laboratoire geLaboratoireById(Long idLabo,long idUser)
+    public Laboratoire geLaboratoireById(Long idLabo)
     {
-        Admin admin=checkPrivilege(idUser);
-        if(admin == null)
-            throw new RuntimeException("vous n'etes pas autorisé de realiser cette action.");
         return laboRepository.findById(idLabo).orElse(null);
     }
 
 
-    public void deleteLabo(Long idLabo, Long idUser)
+    public void deleteLabo(Long idLabo)
     {
-        Admin admin=checkPrivilege(idUser);
-        if(admin == null)
-            throw new RuntimeException("vous n'etes pas autorisé de realiser cette action.");
         laboRepository.deleteById(idLabo);
     }
 
-    public Laboratoire updateLabo( Laboratoire labo,Long idUser)
+    public Laboratoire updateLabo( Laboratoire labo)
     {
-        Admin admin=checkPrivilege(idUser);
-        if(admin == null)
-            throw new RuntimeException("vous n'etes pas autorisé de realiser cette action.");
         return laboRepository.save(labo);
+    }
+
+    public boolean setRespoLabo( Long idLabo , Long idRespo)
+    {
+        Responsable responsable=respoRepository.findById(idRespo).orElse(null);
+        Laboratoire laboratoire=laboRepository.findById(idLabo).orElse(null);
+
+        if(responsable == null || laboratoire == null)
+        {
+            return false;
+        }
+
+        laboratoire.setRepsonsable(responsable);
+        return true;
+    }
+
+    public boolean addMembreLabo( Long idLabo, Long idMembre)
+    {
+        Membre membre=membreRepository.findById(idMembre).orElse(null);
+        Laboratoire laboratoire=laboRepository.findById(idLabo).orElse(null);
+        if(membre == null || laboratoire == null)
+        {
+            return false;
+        }
+        laboratoire.getMembres().add(membre);
+        return true;
 
     }
+
+
+
+
+
 
 
 

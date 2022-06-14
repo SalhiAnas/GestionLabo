@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "ROLE",length = 1)
+@DiscriminatorColumn(name = "ROLE",length = 200)
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
