@@ -10,7 +10,9 @@ import java.util.Date;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type",length = 20)
+
 public class Besoin {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBesoin;

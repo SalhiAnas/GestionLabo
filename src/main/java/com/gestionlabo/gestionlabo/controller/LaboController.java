@@ -1,5 +1,6 @@
 package com.gestionlabo.gestionlabo.controller;
 
+import com.gestionlabo.gestionlabo.model.BudgetLabo;
 import com.gestionlabo.gestionlabo.model.Laboratoire;
 import com.gestionlabo.gestionlabo.model.User;
 import com.gestionlabo.gestionlabo.service.LaboService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("laboratoire")
 public class LaboController {
     @Autowired
@@ -19,6 +21,7 @@ public class LaboController {
     @GetMapping("/getAllLabo")
     public List<Laboratoire> getAllLabo()
     {
+
         return laboService.getAllLabo();
     }
 
@@ -31,6 +34,7 @@ public class LaboController {
     @PostMapping("/saveLabo")
     Laboratoire saveLabo(@RequestBody Laboratoire laboratoire)
     {
+        System.out.println(laboratoire);
         return  laboService.saveLabo(laboratoire);
     }
 
@@ -46,6 +50,8 @@ public class LaboController {
     {
         return laboService.updateLabo(laboratoire);
     }
+
+
 
 
 

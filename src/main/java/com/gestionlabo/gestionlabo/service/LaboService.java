@@ -3,10 +3,7 @@ package com.gestionlabo.gestionlabo.service;
 import com.gestionlabo.gestionlabo.model.Laboratoire;
 import com.gestionlabo.gestionlabo.model.Membre;
 import com.gestionlabo.gestionlabo.model.Responsable;
-import com.gestionlabo.gestionlabo.repositories.LaboRepository;
-import com.gestionlabo.gestionlabo.repositories.MembreRepository;
-import com.gestionlabo.gestionlabo.repositories.ResponsableRepository;
-import com.gestionlabo.gestionlabo.repositories.UserRepository;
+import com.gestionlabo.gestionlabo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +20,9 @@ public class LaboService {
 
     @Autowired
     MembreRepository membreRepository;
+
+    @Autowired
+    BudgetLaboRepository budgetLaboRepository;
 
 
 
@@ -80,6 +80,9 @@ public class LaboService {
         return true;
 
     }
+
+    // budget
+
 
 
 

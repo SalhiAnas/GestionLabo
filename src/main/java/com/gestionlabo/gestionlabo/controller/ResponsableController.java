@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("user")
 public class ResponsableController {
 
@@ -31,9 +32,9 @@ public class ResponsableController {
     }
 
     @PostMapping("/saveRespo")
-    public Responsable saveUser(@RequestBody Responsable user)
+    public Responsable saveUser(@RequestBody Responsable user,@RequestParam Long idLabo)
     {
-        return  responsableService.saveResponsable(user);
+        return  responsableService.saveResponsable(user,idLabo);
     }
 
     @DeleteMapping("/deleteRespo")

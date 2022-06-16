@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("user")
 public class MembreController {
 
@@ -32,9 +33,9 @@ public class MembreController {
     }
 
     @PostMapping("/saveMembre")
-    public Membre saveUser(@RequestBody Membre user)
+    public Membre saveUser(@RequestBody Membre user,@RequestParam Long idLabo)
     {
-        return  membreService.saveMembre(user);
+        return  membreService.saveMembre(user,idLabo);
     }
 
     @DeleteMapping("/deleteMembre")

@@ -2,9 +2,11 @@ package com.gestionlabo.gestionlabo.service;
 
 import com.gestionlabo.gestionlabo.model.BudgetLabo;
 import com.gestionlabo.gestionlabo.model.BudgetMembre;
+import com.gestionlabo.gestionlabo.model.Laboratoire;
 import com.gestionlabo.gestionlabo.repositories.BudgetLaboRepository;
 import com.gestionlabo.gestionlabo.repositories.BudgetMembreRepository;
 import com.gestionlabo.gestionlabo.repositories.BudgetRepository;
+import com.gestionlabo.gestionlabo.repositories.LaboRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,15 +21,22 @@ public class BudgetLaboService {
     @Autowired
     BudgetLaboRepository budgetLaboRepository;
 
+    @Autowired
+    LaboRepository laboRepository;
+
+
+
 
     public List<BudgetLabo> getAllLaboBuget()
     {
         return budgetLaboRepository.findAll();
     }
 
-    public BudgetLabo saveBudgetLabo(BudgetLabo budgetLabo)
+    public BudgetLabo saveBudgetLabo(BudgetLabo budgetLabo,Long idLabo)
     {
-
+        Laboratoire laboratoire=laboRepository.findById(idLabo).orElse(null);
+        if (laboratoire == null) return null;
+        budgetLabo.setLaboratoire(laboratoire);
         return  budgetLaboRepository.save(budgetLabo);
     }
 

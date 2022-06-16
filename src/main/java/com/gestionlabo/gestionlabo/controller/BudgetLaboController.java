@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("budgetlabo")
 public class BudgetLaboController {
 
@@ -31,9 +32,9 @@ public class BudgetLaboController {
     }
 
     @PostMapping("/saveBudget")
-    public BudgetLabo saveBudget(@RequestBody BudgetLabo budgetLabo)
+    public BudgetLabo saveBudget(@RequestBody BudgetLabo budgetLabo,@RequestParam Long idLabo)
     {
-        return  budgetLaboService.saveBudgetLabo(budgetLabo);
+        return  budgetLaboService.saveBudgetLabo(budgetLabo,idLabo);
     }
 
     @DeleteMapping("/deleteBudget")
@@ -48,6 +49,8 @@ public class BudgetLaboController {
     {
         return budgetLaboService.updateBudgetLabo(budgetLabo);
     }
+
+
 
 
 

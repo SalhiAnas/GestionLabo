@@ -15,10 +15,10 @@ public class Laboratoire {
     public String nomLabo;
     public String depatement;
 
-    @OneToMany(mappedBy = "laboratoire")
+    @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY)
     private List<BudgetLabo>  budgetsLabo;
 
-    @OneToMany(mappedBy = "laboratoire")
+    @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY)
     private List<Membre>  membres;
 
     @OneToOne ( mappedBy = "laboratoire")
