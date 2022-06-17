@@ -25,20 +25,20 @@ public class BudgetLaboController {
         return budgetLaboService.getAllLaboBuget();
     }
 
-    @GetMapping("/findBudget")
+    @GetMapping("/findBudget/{idBudget}")
     public BudgetLabo findBudget(@RequestParam Long idBudget)
     {
         return budgetLaboService.getBudgetLaboById(idBudget);
     }
 
-    @PostMapping("/saveBudget")
-    public BudgetLabo saveBudget(@RequestBody BudgetLabo budgetLabo,@RequestParam Long idLabo)
+    @PostMapping("/saveBudget/{idLabo}")
+    public BudgetLabo saveBudget(@RequestBody BudgetLabo budgetLabo,@PathVariable Long idLabo)
     {
         return  budgetLaboService.saveBudgetLabo(budgetLabo,idLabo);
     }
 
-    @DeleteMapping("/deleteBudget")
-    public void deleteBudget(@RequestBody Long idBudget)
+    @DeleteMapping("/deleteBudget/{idBudget}")
+    public void deleteBudget(@PathVariable Long idBudget)
     {
         budgetLaboService.deleteBudgetLabo(idBudget);
     }

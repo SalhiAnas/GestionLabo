@@ -25,8 +25,8 @@ public class LaboController {
         return laboService.getAllLabo();
     }
 
-    @GetMapping("/findLabo")
-    public Laboratoire findLabo(@RequestParam Long idLabo)
+    @GetMapping("/findLabo/{idLabo}")
+    public Laboratoire findLabo(@PathVariable Long idLabo)
     {
         return laboService.geLaboratoireById(idLabo);
     }
@@ -38,8 +38,8 @@ public class LaboController {
         return  laboService.saveLabo(laboratoire);
     }
 
-    @DeleteMapping("/deleteLabo")
-    void deleteLabo(@RequestBody Long idLabo)
+    @DeleteMapping("/deleteLabo/{idLabo}")
+    void deleteLabo(@PathVariable Long idLabo)
     {
           laboService.deleteLabo(idLabo);
     }

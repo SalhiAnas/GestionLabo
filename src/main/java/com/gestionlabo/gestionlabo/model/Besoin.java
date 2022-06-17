@@ -1,5 +1,6 @@
 package com.gestionlabo.gestionlabo.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,8 @@ import java.util.Date;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type",length = 20)
+@Inheritance(strategy = InheritanceType.JOINED)
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="idBesoin")
 
 public class Besoin {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +20,9 @@ public class Besoin {
     private LocalDateTime dateBesoin;
     private String description;
     private String etatBesoin;
+
+    @ManyToOne
+    private Membre membre;
 
 
 }

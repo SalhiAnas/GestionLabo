@@ -24,21 +24,21 @@ public class ResponsableController {
         return responsableService.getAllResponsable();
     }
 
-    @GetMapping("/findResponsable")
-    public Responsable findUser(@RequestParam Long idUser)
+    @GetMapping("/findResponsable/{idUser}")
+    public Responsable findUser(@PathVariable Long idUser)
     {
         return responsableService.getResponsableById(idUser);
 
     }
 
-    @PostMapping("/saveRespo")
-    public Responsable saveUser(@RequestBody Responsable user,@RequestParam Long idLabo)
+    @PostMapping("/saveRespo/{idLabo}")
+    public Responsable saveUser(@RequestBody Responsable user,@PathVariable Long idLabo)
     {
         return  responsableService.saveResponsable(user,idLabo);
     }
 
-    @DeleteMapping("/deleteRespo")
-    public void deleteUser(@RequestBody Long idUser)
+    @DeleteMapping("/deleteRespo/{idUser}")
+    public void deleteUser(@PathVariable Long idUser)
     {
         responsableService.deleteResponsable(idUser);
     }

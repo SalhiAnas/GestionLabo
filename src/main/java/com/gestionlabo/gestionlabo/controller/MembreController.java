@@ -25,21 +25,21 @@ public class MembreController {
         return membreService.getAllMembre();
     }
 
-    @GetMapping("/findMembre")
-    public Membre findUser(@RequestParam Long idUser)
+    @GetMapping("/findMembre/{idUser}")
+    public Membre findUser(@PathVariable Long idUser)
     {
         return membreService.getMembreById(idUser);
 
     }
 
-    @PostMapping("/saveMembre")
-    public Membre saveUser(@RequestBody Membre user,@RequestParam Long idLabo)
+    @PostMapping("/saveMembre/{idLabo}")
+    public Membre saveUser(@RequestBody Membre user,@PathVariable Long idLabo)
     {
         return  membreService.saveMembre(user,idLabo);
     }
 
-    @DeleteMapping("/deleteMembre")
-    public void deleteUser(@RequestBody Long idUser)
+    @DeleteMapping("/deleteMembre/{idUser}")
+    public void deleteUser(@PathVariable Long idUser)
     {
         membreService.deleteMembre(idUser);
     }

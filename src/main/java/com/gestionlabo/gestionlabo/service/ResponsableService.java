@@ -25,6 +25,7 @@ public class ResponsableService {
     public Responsable saveResponsable(Responsable user,Long idLabo) {
         Laboratoire laboratoire=laboRepository.findById(idLabo).orElse(null);
         if (laboratoire == null) return null;
+        user.setLaboratoire(laboratoire);
         return  responsableRepository.save(user);
     }
 

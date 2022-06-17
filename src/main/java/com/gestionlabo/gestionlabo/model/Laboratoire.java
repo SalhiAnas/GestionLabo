@@ -1,5 +1,6 @@
 package com.gestionlabo.gestionlabo.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,9 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor @AllArgsConstructor @Data
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Laboratoire {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
@@ -21,8 +25,8 @@ public class Laboratoire {
     @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY)
     private List<Membre>  membres;
 
-    @OneToOne ( mappedBy = "laboratoire")
-    private Responsable repsonsable;
+    @OneToOne(mappedBy = "laboratoire",fetch = FetchType.LAZY)
+    private Responsable responsable;
 
 
 

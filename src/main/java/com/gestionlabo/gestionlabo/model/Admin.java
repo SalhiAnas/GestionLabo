@@ -8,6 +8,5 @@ import javax.persistence.*;
 
 @Entity
 @Data @AllArgsConstructor
-@DiscriminatorValue("A")
 public class Admin extends User{
 }

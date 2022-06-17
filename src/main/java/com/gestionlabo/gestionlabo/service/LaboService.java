@@ -64,7 +64,7 @@ public class LaboService {
             return false;
         }
 
-        laboratoire.setRepsonsable(responsable);
+        laboratoire.setResponsable(responsable);
         return true;
     }
 
