@@ -26,7 +26,7 @@ public class BudgetLaboController {
     }
 
     @GetMapping("/findBudget/{idBudget}")
-    public BudgetLabo findBudget(@RequestParam Long idBudget)
+    public BudgetLabo findBudget(@PathVariable Long idBudget)
     {
         return budgetLaboService.getBudgetLaboById(idBudget);
     }

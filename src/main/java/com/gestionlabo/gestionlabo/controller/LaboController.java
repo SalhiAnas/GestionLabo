@@ -46,6 +46,7 @@ public class LaboController {
 
 
     @PutMapping("/updateLabo")
+    @CrossOrigin(origins = "http://localhost:4200")
     Laboratoire updateLabo(@RequestBody Laboratoire laboratoire)
     {
         return laboService.updateLabo(laboratoire);

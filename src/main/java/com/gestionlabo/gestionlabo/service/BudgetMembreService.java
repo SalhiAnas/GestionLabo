@@ -1,7 +1,10 @@
 package com.gestionlabo.gestionlabo.service;
 
+import com.gestionlabo.gestionlabo.model.BudgetLabo;
 import com.gestionlabo.gestionlabo.model.BudgetMembre;
+import com.gestionlabo.gestionlabo.model.Laboratoire;
 import com.gestionlabo.gestionlabo.model.Membre;
+import com.gestionlabo.gestionlabo.repositories.BudgetLaboRepository;
 import com.gestionlabo.gestionlabo.repositories.BudgetMembreRepository;
 import com.gestionlabo.gestionlabo.repositories.MembreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,9 @@ public class BudgetMembreService {
     @Autowired
     MembreRepository membreRepository;
 
+    @Autowired
+    BudgetLaboRepository budgetLaboRepository;
+
     public List<BudgetMembre> getAllMembreBuget()
     {
         return budgetMembreRepository.findAll();
@@ -27,6 +33,17 @@ public class BudgetMembreService {
     {
         Membre membre=membreRepository.findById(idMembre).orElse(null);
         if (membre == null) return null;
+        int annee=budgetMembre.getAnneeCivile();
+        Laboratoire laboratoire=membre.getLaboratoire();
+        for (BudgetLabo budgetLabo: laboratoire.getBudgetsLabo())
+        {
+            if (annee == budgetLabo.getAnneeCivile())
+            {
+                budgetLabo.setSommeRestante(budgetLabo.getSommeRestante()-budgetMembre.getBudgetPersonel());
+                budgetLaboRepository.save(budgetLabo);
+            }
+        }
+        budgetMembre.setSommeRestante(budgetMembre.getBudgetPersonel());
         budgetMembre.setMembre(membre);
         return  budgetMembreRepository.save(budgetMembre);
     }

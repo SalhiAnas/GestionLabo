@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
 
-        @Query("select u From User u where u.Login=: Login and u.password=: password")
-        public User authentificate(@RequestParam String Login, @RequestParam String password);
+        @Query("select u from User u where u.Login=:login and u.password=:password")
+         User getByLoginAndPassword(@Param("login") String Login,@Param("password") String password);
 }

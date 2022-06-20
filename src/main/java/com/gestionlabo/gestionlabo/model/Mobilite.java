@@ -11,6 +11,5 @@ import javax.persistence.Entity;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Mobilite extends Besoin{
     private String ReferenceBillet;
-    private double prixBillet;
-    private double FarisSejour;
+    private double FraisMobilite;
 }

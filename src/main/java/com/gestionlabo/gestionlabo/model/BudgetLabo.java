@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 public class BudgetLabo extends Budget{
     private double dotationBase;
     private double dotationRecherche;
+    private double sommeRestante;
 
     @ManyToOne
     private Laboratoire laboratoire;

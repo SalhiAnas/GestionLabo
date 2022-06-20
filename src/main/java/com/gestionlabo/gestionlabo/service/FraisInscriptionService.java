@@ -1,14 +1,17 @@
 package com.gestionlabo.gestionlabo.service;
 
 import com.gestionlabo.gestionlabo.model.AchatMateriel;
+import com.gestionlabo.gestionlabo.model.BudgetMembre;
 import com.gestionlabo.gestionlabo.model.FraisInscription;
 import com.gestionlabo.gestionlabo.model.Membre;
 import com.gestionlabo.gestionlabo.repositories.AchatMaterielRepository;
+import com.gestionlabo.gestionlabo.repositories.BudgetMembreRepository;
 import com.gestionlabo.gestionlabo.repositories.FraisInscriptionRepository;
 import com.gestionlabo.gestionlabo.repositories.MembreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -18,6 +21,9 @@ public class FraisInscriptionService {
 
     @Autowired
     MembreRepository membreRepository;
+
+    @Autowired
+    BudgetMembreRepository budgetMembreRepository;
 
     public List<FraisInscription> getAllFraisInscription()
     {
@@ -46,6 +52,20 @@ public class FraisInscriptionService {
 
     public FraisInscription updateFraisInscription( FraisInscription fraisInscription)
     {
+        if (fraisInscription.getEtatBesoin().equals("Accepted"))
+        {
+            int annee = fraisInscription.getDateBesoin().getYear();
+            Membre membre = membreRepository.findById(fraisInscription.getMembre().getUserId()).orElse(null);
+            if (membre == null) return null;
+            for (BudgetMembre budgetMembre: membre.getBudgetMembres())
+            {
+                if (annee == budgetMembre.getAnneeCivile())
+                {
+                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante()-fraisInscription.getFraisInscription());
+                    budgetMembreRepository.save(budgetMembre);
+                }
+            }
+        }
         return fraisInscriptionRepository.save(fraisInscription);
     }
 }

@@ -8,6 +8,7 @@ import com.gestionlabo.gestionlabo.service.BudgetLaboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,7 @@ public class AchatMaterielController {
     @PostMapping("/saveMateriel/{idMembre}")
     public AchatMateriel saveMateriel(@RequestBody AchatMateriel achatMateriel,@PathVariable Long idMembre)
     {
+        achatMateriel.setDateBesoin(LocalDateTime.now());
         return  achatMaterielService.saveAchatMateriel(achatMateriel,idMembre);
     }
 

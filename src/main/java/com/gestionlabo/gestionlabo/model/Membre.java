@@ -13,13 +13,13 @@ import java.util.List;
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="userId")
 public class Membre extends  User {
 
-    @OneToMany(mappedBy = "membre",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "membre",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     List <BudgetMembre> budgetMembres;
 
     @ManyToOne(fetch = FetchType.LAZY)
     Laboratoire laboratoire;
 
-    @OneToMany(mappedBy = "membre")
+    @OneToMany(mappedBy = "membre",cascade = CascadeType.ALL, orphanRemoval = true)
     List <Besoin> besoins;
 
 

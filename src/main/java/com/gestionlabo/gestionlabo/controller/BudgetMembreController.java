@@ -31,7 +31,7 @@ public class BudgetMembreController {
         return budgetMembreService.getBudgetMembreById(idBudget);
     }
 
-    @PostMapping("/saveBudget")
+    @PostMapping("/saveBudget/{idMembre}")
     public BudgetMembre saveBudget(@RequestBody BudgetMembre budgetMembre,@PathVariable Long idMembre)
     {
         return  budgetMembreService.saveBudgetMembre(budgetMembre,idMembre);

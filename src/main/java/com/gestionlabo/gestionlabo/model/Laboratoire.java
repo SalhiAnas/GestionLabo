@@ -19,13 +19,13 @@ public class Laboratoire {
     public String nomLabo;
     public String depatement;
 
-    @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BudgetLabo>  budgetsLabo;
 
-    @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "laboratoire",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Membre>  membres;
 
-    @OneToOne(mappedBy = "laboratoire",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "laboratoire",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     private Responsable responsable;
 
 

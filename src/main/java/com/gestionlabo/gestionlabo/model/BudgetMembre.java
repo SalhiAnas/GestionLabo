@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="idBudget")
 public class BudgetMembre extends Budget{
     private double budgetPersonel;
+    private double sommeRestante;
+
     @ManyToOne
     Membre membre;
 

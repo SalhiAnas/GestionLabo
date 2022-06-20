@@ -37,6 +37,7 @@ public class BudgetLaboService {
         Laboratoire laboratoire=laboRepository.findById(idLabo).orElse(null);
         if (laboratoire == null) return null;
         budgetLabo.setLaboratoire(laboratoire);
+        budgetLabo.setSommeRestante(budgetLabo.getDotationRecherche());
         return  budgetLaboRepository.save(budgetLabo);
     }
 
