@@ -19,8 +19,16 @@ public class Membre extends  User {
     @ManyToOne(fetch = FetchType.LAZY)
     Laboratoire laboratoire;
 
-    @OneToMany(mappedBy = "membre",cascade = CascadeType.ALL, orphanRemoval = true)
-    List <Besoin> besoins;
+    @OneToMany(mappedBy = "membre",cascade = CascadeType.ALL)
+    List <AchatMateriel> achatMateriels;
+
+    @OneToMany(mappedBy = "membre",cascade = CascadeType.ALL)
+    List <FraisInscription> fraisInscriptions;
+
+    @OneToMany(mappedBy = "membre",cascade = CascadeType.ALL)
+    List <Mobilite> mobilites;
+
+
 
 
 

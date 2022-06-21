@@ -62,6 +62,43 @@ public class BudgetMembreService {
 
     public BudgetMembre updateBudgetMembre( BudgetMembre budgetMembre)
     {
+//        BudgetMembre budgetActuel =budgetMembreRepository.findById(budgetMembre.getIdBudget()).orElse(null);
+//        System.out.println(budgetActuel);
+//        if (budgetActuel != null) {
+//        if (budgetActuel.getBudgetPersonel() != budgetMembre.getBudgetPersonel())
+//        {
+//            int annee=budgetMembre.getAnneeCivile();
+//            Membre membre = membreRepository.findById(budgetActuel.getMembre().getUserId()).orElse(null);
+//            Laboratoire laboratoire=membre.getLaboratoire();
+//
+//            if (budgetActuel.getBudgetPersonel() > budgetMembre.getBudgetPersonel())
+//            {
+//                for (BudgetLabo budgetLabo: laboratoire.getBudgetsLabo())
+//                {
+//                    if (annee == budgetLabo.getAnneeCivile())
+//                    {
+//                        System.out.println("m here 1");
+//                        budgetLabo.setSommeRestante(budgetLabo.getSommeRestante()+(budgetActuel.getBudgetPersonel()-budgetMembre.getBudgetPersonel()));
+//                        budgetLaboRepository.save(budgetLabo);
+//                    }
+//                }
+//
+//            }
+//            else if (budgetActuel.getBudgetPersonel() < budgetMembre.getBudgetPersonel()){
+//                for (BudgetLabo budgetLabo: laboratoire.getBudgetsLabo())
+//                {
+//                    if (annee == budgetLabo.getAnneeCivile())
+//                    {
+//                        System.out.println("m here 2");
+//
+//                        budgetLabo.setSommeRestante(budgetLabo.getSommeRestante()-(budgetMembre.getBudgetPersonel()-budgetActuel.getBudgetPersonel()));
+//                        budgetLaboRepository.save(budgetLabo);
+//                    }
+//                }
+//            }
+//        }
+//        }
+
         return budgetMembreRepository.save(budgetMembre);
     }
 }

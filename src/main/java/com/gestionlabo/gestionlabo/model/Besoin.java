@@ -21,8 +21,7 @@ public class Besoin {
     private String description;
     private String etatBesoin;
 
-    @ManyToOne
-    private Membre membre;
+
 
 
 }
