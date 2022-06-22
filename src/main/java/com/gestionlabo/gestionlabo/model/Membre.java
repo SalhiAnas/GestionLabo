@@ -13,7 +13,7 @@ import java.util.List;
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="userId")
 public class Membre extends  User {
 
-    @OneToMany(mappedBy = "membre",fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "membre",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     List <BudgetMembre> budgetMembres;
 
     @ManyToOne(fetch = FetchType.LAZY)

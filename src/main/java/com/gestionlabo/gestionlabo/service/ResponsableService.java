@@ -49,6 +49,8 @@ public class ResponsableService {
 
     public void deleteResponsable(Long iduser)
     {
+
+        System.out.println("ok");
         responsableRepository.deleteById(iduser);
     }
 

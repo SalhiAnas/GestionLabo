@@ -48,20 +48,19 @@ public class AchatMaterielService {
 
     public AchatMateriel updateAchatMatriel( AchatMateriel achatMateriel)
     {
-        if (achatMateriel.getEtatBesoin().equals("Accepted")) {
-            int annee = achatMateriel.getDateBesoin().getYear();
-            Membre membre = membreRepository.findById(achatMateriel.getMembre().getUserId()).orElse(null);
-            if (membre == null) return null;
-            for (BudgetMembre budgetMembre : membre.getBudgetMembres()) {
-                if (annee == budgetMembre.getAnneeCivile()) {
-                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante() - achatMateriel.getPrixMateriel());
-                    budgetMembreRepository.save(budgetMembre);
-                }
-            }
-        }
+//        if (achatMateriel.getEtatBesoin().equals("Accepted")) {
+//            int annee = achatMateriel.getDateBesoin().getYear();
+//            Membre membre = membreRepository.findById(achatMateriel.getMembre().getUserId()).orElse(null);
+//            if (membre == null) return null;
+//            for (BudgetMembre budgetMembre : membre.getBudgetMembres()) {
+//                if (annee == budgetMembre.getAnneeCivile()) {
+//                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante() - achatMateriel.getPrixMateriel());
+//                    budgetMembreRepository.save(budgetMembre);
+//                }
+//            }
+//        }
         return achatMaterielRepository.save(achatMateriel);
     }
-
 
 
 

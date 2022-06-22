@@ -52,20 +52,20 @@ public class FraisInscriptionService {
 
     public FraisInscription updateFraisInscription( FraisInscription fraisInscription)
     {
-        if (fraisInscription.getEtatBesoin().equals("Accepted"))
-        {
-            int annee = fraisInscription.getDateBesoin().getYear();
-            Membre membre = membreRepository.findById(fraisInscription.getMembre().getUserId()).orElse(null);
-            if (membre == null) return null;
-            for (BudgetMembre budgetMembre: membre.getBudgetMembres())
-            {
-                if (annee == budgetMembre.getAnneeCivile())
-                {
-                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante()-fraisInscription.getFraisInscription());
-                    budgetMembreRepository.save(budgetMembre);
-                }
-            }
-        }
+//        if (fraisInscription.getEtatBesoin().equals("Accepted"))
+//        {
+//            int annee = fraisInscription.getDateBesoin().getYear();
+//            Membre membre = membreRepository.findById(fraisInscription.getMembre().getUserId()).orElse(null);
+//            if (membre == null) return null;
+//            for (BudgetMembre budgetMembre: membre.getBudgetMembres())
+//            {
+//                if (annee == budgetMembre.getAnneeCivile())
+//                {
+//                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante()-fraisInscription.getFraisInscription());
+//                    budgetMembreRepository.save(budgetMembre);
+//                }
+//            }
+//        }
         return fraisInscriptionRepository.save(fraisInscription);
     }
 }

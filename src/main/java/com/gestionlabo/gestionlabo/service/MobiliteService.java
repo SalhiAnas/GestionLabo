@@ -52,17 +52,17 @@ public class MobiliteService {
 
     public Mobilite updateMobilite( Mobilite mobilite)
     {
-        if (mobilite.getEtatBesoin().equals("Accepted")) {
-            int annee = mobilite.getDateBesoin().getYear();
-            Membre membre = membreRepository.findById(mobilite.getMembre().getUserId()).orElse(null);
-            if (membre == null) return null;
-            for (BudgetMembre budgetMembre : membre.getBudgetMembres()) {
-                if (annee == budgetMembre.getAnneeCivile()) {
-                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante() - mobilite.getFraisMobilite());
-                    budgetMembreRepository.save(budgetMembre);
-                }
-            }
-        }
+//        if (mobilite.getEtatBesoin().equals("Accepted")) {
+//            int annee = mobilite.getDateBesoin().getYear();
+//            Membre membre = membreRepository.findById(mobilite.getMembre().getUserId()).orElse(null);
+//            if (membre == null) return null;
+//            for (BudgetMembre budgetMembre : membre.getBudgetMembres()) {
+//                if (annee == budgetMembre.getAnneeCivile()) {
+//                    budgetMembre.setSommeRestante(budgetMembre.getSommeRestante() - mobilite.getFraisMobilite());
+//                    budgetMembreRepository.save(budgetMembre);
+//                }
+//            }
+//        }
         return mobiliteRepository.save(mobilite);
     }
 
